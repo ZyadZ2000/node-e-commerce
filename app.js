@@ -10,6 +10,8 @@ import connectMongoDBSession from 'connect-mongodb-session';
 import csrf from 'csurf';
 import flash from 'connect-flash';
 import multer from 'multer';
+import morgan from 'morgan';
+import helmet from 'helmet';
 
 import * as errorController from './controllers/error.js';
 import User from './models/user.js';
@@ -56,6 +58,8 @@ const fileFilter = (req, file, cb) => {
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+app.use(helmet());
+app.use(morgan('common'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
