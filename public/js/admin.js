@@ -1,23 +1,25 @@
-const deleteProduct = btn => {
-  const prodId = btn.parentNode.querySelector('[name=productId]').value;
-  const csrf = btn.parentNode.querySelector('[name=_csrf]').value;
+const deleteBtn = document.querySelector('.delete_btn');
 
-  const productElement = btn.closest('article');
+deleteBtn.addEventListener('click', function (event) {
+  const prodId = this.parentNode.querySelector('[name=productId]').value;
+  const csrf = this.parentNode.querySelector('[name=_csrf]').value;
+
+  const productElement = this.closest('article');
 
   fetch('/admin/product/' + prodId, {
     method: 'DELETE',
     headers: {
-      'csrf-token': csrf
-    }
+      'csrf-token': csrf,
+    },
   })
-    .then(result => {
+    .then((result) => {
       return result.json();
     })
-    .then(data => {
+    .then((data) => {
       console.log(data);
       productElement.parentNode.removeChild(productElement);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
-};
+});

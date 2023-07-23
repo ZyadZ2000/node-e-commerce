@@ -18,17 +18,8 @@
                 <h2>Total: <%= totalSum %></h2>
             </div>
             <div class="centered">
-                <button id="order-btn" class="btn">ORDER</button>
-                <script src="https://js.stripe.com/v3/"></script>
-                <script>
-                    var stripe = Stripe('pk_test_Oa1aEfV1EFTGOLJHIkx6mFUs00AtOsluFy');
-                    var orderBtn = document.getElementById('order-btn');
-                    orderBtn.addEventListener('click', function() {
-                        stripe.redirectToCheckout({
-                            sessionId: '<%= sessionId %>'
-                        });
-                    });
-                </script>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <a href="/checkout/success" id="order-btn" class="btn">ORDER</a>
             </div>
         </main>
         <%- include('../includes/end.ejs') %>
