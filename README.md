@@ -4,7 +4,7 @@ A simple E-Commerce website that allows users to sign-up/login and list their ow
 
 Includes functionalities like authentication, password resets, authorization, sessions, file upload/download, pagination, etc.
 
-Architecture: MVC
+<b>Architecture: MVC</b>
 
 # Tools
 
